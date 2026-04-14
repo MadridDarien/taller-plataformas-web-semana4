@@ -1,28 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const {login, logout} = require('../controllers/authController');
 
-router.get('/', (req, res) => {
-    res.send('Ruta principal funcionando');
-});
+// Ruta de login
+router.post('/login', login);
 
-router.post('/login', (req, res) => {
-    const { usuario, password } = req.body;
+// Ruta de logout
+router.post('/logout', logout);
 
-    if (usuario === 'admin' && password === '1234') {
-        res.send('Login correcto');
-    } else {
-        res.send('Credenciales incorrectas');
-    }
-});
-
-router.get('/api/viajes', (req, res) => {
-    const viajes = [
-        { id: 1, destino: 'París', dias: 7 },
-        { id: 2, destino: 'Puerto Montt', dias: 4 },
-        { id: 3, destino: 'Nueva York', dias: 6 }
-    ];
-
-    res.json(viajes);
-});
 
 module.exports = router;
