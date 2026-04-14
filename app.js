@@ -9,13 +9,17 @@ require("dotenv").config(); // leer variables de entorno
 app.use(express.json());
 app.use(cookieParser()); // <-- NECESARIO para leer cookies
 
-// Rutas antiguas (las de tu compañero)
+// Rutas antiguas
 const rutas = require('./routes');
 app.use('/', rutas);
 
 // Rutas nuevas de autenticación
 const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes);
+
+// Rutas protegidas de viajes
+const viajesRoutes = require("./routes/viajesRoutes");
+app.use("/api/viajes", viajesRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
