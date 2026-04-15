@@ -9,11 +9,11 @@ require("dotenv").config(); // leer variables de entorno
 app.use(express.json());
 app.use(cookieParser()); // <-- NECESARIO para leer cookies
 
-// Rutas antiguas
-const rutas = require('./routes');
-app.use('/', rutas);
+// Ruta principal
+const homeRoutes = require("./routes/homeRoutes");
+app.use("/", homeRoutes);
 
-// Rutas nuevas de autenticación
+// Rutas de autenticación
 const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes);
 

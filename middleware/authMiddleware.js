@@ -9,12 +9,9 @@ module.exports = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        // Guardamos los datos del usuario en req.user
         req.user = decoded;
-
-        next(); // continuar a la ruta protegida
+        next();
     } catch (error) {
-        return res.status(401).json({ message: "Token inválido o expirado." });
+        return res.status(401).json({ message: "Token inválido" });
     }
 };
